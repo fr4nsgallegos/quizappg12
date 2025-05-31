@@ -1,16 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:quizappg12/quiz_brain.dart';
 
-class HomePage extends StatelessWidget {
-  QuizBrain quizBrain = QuizBrain();
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  QuizBrain quizBrain = QuizBrain();
+  List<Widget> score = [];
   void checkAnswer(bool userAnswer) {
     bool correctAnswer = quizBrain.getQuestionAnswer();
+
+    //CUANDO LA RESPUESTA ES CORRECTA
     if (correctAnswer == userAnswer) {
+      score.add(itemScore((quizBrain.questionIndex + 1).toString(), true));
       print("La respuesta es correcta");
-    } else {
+    }
+    // CUANDO LA RESPUESTA ES INCORRECTA
+    else {
+      score.add(itemScore((quizBrain.questionIndex + 1).toString(), false));
       print("INCORRECTOOOOO!!!");
     }
+
+    quizBrain.nextQuestion();
+    setState(() {});
+  }
+
+  Widget itemScore(String numberQuestion, bool isCorrect) {
+    return Row(
+      children: [
+        Text(
+          numberQuestion,
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+        Icon(
+          isCorrect ? Icons.check : Icons.close,
+          color: isCorrect ? Colors.greenAccent : Colors.redAccent,
+        ),
+      ],
+    );
   }
 
   @override
@@ -31,7 +60,7 @@ class HomePage extends StatelessWidget {
                 flex: 5,
                 child: Center(
                   child: Text(
-                    quizBrain.getQuestionText(),
+                    "${quizBrain.questionIndex + 1}. ${quizBrain.getQuestionText()}",
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
@@ -67,6 +96,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: score),
             ],
           ),
         ),
