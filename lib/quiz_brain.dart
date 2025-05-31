@@ -19,6 +19,17 @@ class QuizBrain {
   }
 
   void nextQuestion() {
-    questionIndex++; //questionIndex = questionIndex + 1 ;
+    // questionIndex++; //questionIndex = questionIndex + 1 ;
+    if (questionIndex < questionList.length - 1) {
+      questionIndex++;
+    }
+  }
+
+  void isFinished() {
+    if (questionIndex > questionList.length - 1) {
+      nextQuestion();
+    } else {
+      print("El formulario ha terminado");
+    }
   }
 }

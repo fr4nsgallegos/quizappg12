@@ -23,7 +23,12 @@ class _HomePageState extends State<HomePage> {
       print("INCORRECTOOOOO!!!");
     }
 
-    quizBrain.nextQuestion();
+    // if (quizBrain.isFinished() == true) {
+    //   print("El cuestionario ha terminado");
+    // } else {
+    //   quizBrain.nextQuestion();
+    // }
+
     setState(() {});
   }
 
