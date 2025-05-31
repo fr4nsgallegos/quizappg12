@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:quizappg12/quiz_brain.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  QuizBrain quizBrain = QuizBrain();
+
+  void checkAnswer(bool userAnswer) {
+    bool correctAnswer = quizBrain.getQuestionAnswer();
+    if (correctAnswer == userAnswer) {
+      print("La respuesta es correcta");
+    } else {
+      print("INCORRECTOOOOO!!!");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +31,7 @@ class HomePage extends StatelessWidget {
                 flex: 5,
                 child: Center(
                   child: Text(
-                    "¿El hombre llego a la luna?",
+                    quizBrain.getQuestionText(),
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
@@ -33,7 +43,9 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
 
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      checkAnswer(true);
+                    },
                     minWidth: double.infinity,
                     // minWidth: MediaQuery.of(context).size.width,
                     child: Text("Verdadero"),
@@ -46,9 +58,10 @@ class HomePage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      checkAnswer(false);
+                    },
                     minWidth: double.infinity,
-
                     child: Text("Falso"),
                     color: Colors.redAccent,
                   ),
