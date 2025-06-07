@@ -139,7 +139,10 @@ class _HomePageState extends State<HomePage> {
                     },
                     minWidth: double.infinity,
                     // minWidth: MediaQuery.of(context).size.width,
-                    child: Text("Verdadero"),
+                    child: Text(
+                      "Verdadero",
+                      style: TextStyle(fontFamily: 'MiFuentePersonalizada'),
+                    ),
                     color: Colors.greenAccent,
                   ),
                 ),

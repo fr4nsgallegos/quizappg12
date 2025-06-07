@@ -8,7 +8,8 @@ void main() async {
     MaterialApp(
       home: HomePage(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
+      theme: ThemeData(fontFamily: 'MiFuentePersonalizada'),
+      // theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
     ),
   );
 }
