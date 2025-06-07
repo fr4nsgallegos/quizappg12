@@ -11,7 +11,6 @@ class _HomePageState extends State<HomePage> {
   List<Widget> score = [];
   void checkAnswer(bool userAnswer) {
     bool correctAnswer = quizBrain.getQuestionAnswer();
-
     //CUANDO LA RESPUESTA ES CORRECTA
     if (correctAnswer == userAnswer) {
       score.add(itemScore((quizBrain.questionIndex + 1).toString(), true));
@@ -22,6 +21,59 @@ class _HomePageState extends State<HomePage> {
       score.add(itemScore((quizBrain.questionIndex + 1).toString(), false));
       print("INCORRECTOOOOO!!!");
     }
+
+    if (quizBrain.isFinishedFunc()) {
+      print("El cuestionario ha terminado");
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.warning, color: Colors.orange),
+                Text("Alerta"),
+              ],
+            ),
+            content: Text("Has llegado al final del formulario"),
+            // alignment: Alignment.center,
+            // titlePadding: EdgeInsets.all(8),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("Cancel"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  quizBrain.restartQuizz();
+                  Navigator.pop(context);
+                  score.clear();
+                  setState(() {});
+                },
+                child: Text("OK"),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    // print("--------------------");
+    // print(quizBrain.questionIndex);
+    // print(quizBrain.questionList.length - 1);
+    // print("--------------------");
+
+    // if (quizBrain.questionIndex < quizBrain.questionList.length - 1) {
+    //   quizBrain.nextQuestion();
+    // } else {
+    //   print("El formulario ha terminado");
+    //   return;
+    // }
+    quizBrain.nextQuestion();
 
     // if (quizBrain.isFinished() == true) {
     //   print("El cuestionario ha terminado");

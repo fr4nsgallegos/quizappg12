@@ -1,6 +1,7 @@
 import 'package:quizappg12/models/question_model.dart';
 
 class QuizBrain {
+  bool isFinished = false;
   List<QuestionModel> questionList = [
     QuestionModel(question: "¿El hombre llego a la luna?", answer: true),
     QuestionModel(question: "¿Has almorzado hoy?", answer: false),
@@ -22,14 +23,25 @@ class QuizBrain {
     // questionIndex++; //questionIndex = questionIndex + 1 ;
     if (questionIndex < questionList.length - 1) {
       questionIndex++;
+    } else {
+      isFinished = true;
     }
   }
 
-  void isFinished() {
-    if (questionIndex > questionList.length - 1) {
-      nextQuestion();
-    } else {
-      print("El formulario ha terminado");
-    }
+  // void isFinished() {
+  //   if (questionIndex > questionList.length - 1) {
+  //     nextQuestion();
+  //   } else {
+  //     print("El formulario ha terminado");
+  //   }
+  // }
+
+  bool isFinishedFunc() {
+    return isFinished;
+  }
+
+  void restartQuizz() {
+    questionIndex = 0;
+    isFinished = false;
   }
 }
