@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quizappg12/quiz_brain.dart';
 
 class HomePage extends StatefulWidget {
@@ -118,7 +119,11 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                   child: Text(
                     "${quizBrain.questionIndex + 1}. ${quizBrain.getQuestionText()}",
-                    style: TextStyle(color: Colors.white, fontSize: 25),
+                    style: GoogleFonts.dancingScript(
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
+                    //  TextStyle(color: Colors.white, fontSize: 25),
                   ),
                 ),
               ),
